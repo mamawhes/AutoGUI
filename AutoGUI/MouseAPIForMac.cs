@@ -1,8 +1,9 @@
 using System.Runtime.InteropServices;
-
+using AutoGUI.API;
 namespace AutoGUI;
 
-public class MouseAPIForMac: MouseAPI
+
+internal class MouseAPIForMac: MouseAPI
 {
     // 导入 macOS 的 Core Graphics 框架
     private const string CoreGraphicsLibrary = "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics";
@@ -102,7 +103,7 @@ public class MouseAPIForMac: MouseAPI
     {
        // IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, CGEventType.ScrollWheel, _pos, MouseButton.Middle);
         //CGEventSetIntegerValueField(eventRef, 88, delta); // 88 是滚轮事件的字段值
-        IntPtr eventRef =CGEventCreateScrollWheelEvent(IntPtr.Zero, CGScrollEventUnit.Line, 1, delta, 0);
+        IntPtr eventRef =CGEventCreateScrollWheelEvent(IntPtr.Zero, CGScrollEventUnit.Pixel, 1, delta, 0);
         CGEventPost(0, eventRef);
         CFRelease(eventRef);
     }
