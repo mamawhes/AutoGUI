@@ -53,7 +53,7 @@ namespace AutoGUI
         public static void MouseWheel(int delta)
         {
             _Init();
-            
+            _api.MouseWheel(delta);
         }
 
         public static void MouseClick(MouseButton mouseButton)

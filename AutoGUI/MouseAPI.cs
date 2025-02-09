@@ -22,6 +22,10 @@
             Console.WriteLine($"mouse up to ({(int)mouseButton})");
         }
 
+        public virtual void MouseWheel(int delta)
+        {
+            Console.WriteLine($"mouse wheel to ({delta})");
+        }
         public void MouseClick(MouseButton mouseButton)
         {
             MouseDown(mouseButton); 

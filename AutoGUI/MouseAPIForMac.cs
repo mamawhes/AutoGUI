@@ -28,7 +28,8 @@ public class MouseAPIForMac: MouseAPI
     // 导入 Core Graphics 函数
     [DllImport(CoreGraphicsLibrary)]
     private static extern IntPtr CGEventCreateMouseEvent(IntPtr source, CGEventType mouseType, CGPoint position, MouseButton button);
-
+    [DllImport(CoreGraphicsLibrary)]
+    private static extern IntPtr CGEventCreateScrollWheelEvent(IntPtr source, CGScrollEventUnit units, uint wheelCount, int wheel1, int wheel2);
     [DllImport(CoreGraphicsLibrary)]
     private static extern void CGEventPost(int tap, IntPtr evt);
 
@@ -93,6 +94,15 @@ public class MouseAPIForMac: MouseAPI
             eventType = CGEventType.MiddleMouseUp;
         }
         IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, eventType, _pos, mouseButton);
+        CGEventPost(0, eventRef);
+        CFRelease(eventRef);
+    }
+
+    public override void  MouseWheel(int delta)
+    {
+       // IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, CGEventType.ScrollWheel, _pos, MouseButton.Middle);
+        //CGEventSetIntegerValueField(eventRef, 88, delta); // 88 是滚轮事件的字段值
+        IntPtr eventRef =CGEventCreateScrollWheelEvent(IntPtr.Zero, CGScrollEventUnit.Line, 1, delta, 0);
         CGEventPost(0, eventRef);
         CFRelease(eventRef);
     }
