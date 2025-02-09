@@ -15,7 +15,7 @@ namespace AutoGUI
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    _api = new MouseAPI();
+                    _api = new MouseAPIForWindows();
                 }
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {

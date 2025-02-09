@@ -43,7 +43,7 @@ internal class KeyboardAPIForMac: KeyboardAPI
         }
     }
 
-    public static readonly Dictionary<KeyCode, ushort> KeyToVirtualKeyCode = new Dictionary<KeyCode, ushort>
+    private static readonly Dictionary<KeyCode, ushort> KeyToVirtualKeyCode = new Dictionary<KeyCode, ushort>
     {
         // 字母键
         { KeyCode.A, 0x00 },
