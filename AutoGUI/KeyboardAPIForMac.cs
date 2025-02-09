@@ -21,12 +21,6 @@ internal class KeyboardAPIForMac: KeyboardAPI
     private const int kCGHIDEventTap = 0;
 
     // 定义虚拟键码（这里以字母 A 为例）
-    private const ushort kVK_ANSI_A = 0x00;
-    public override void KeyClick(KeyCode keyCode)
-    {
-        base.KeyClick(keyCode);
-    }
-
     public override void KeyDown(KeyCode keyCode)
     {
         ushort virtualKey = KeyToVirtualKeyCode[keyCode];
