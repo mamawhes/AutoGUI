@@ -67,6 +67,20 @@ namespace AutoGUI
             _Init();
             _api.MouseDoubleClick(mouseButton);
         }
+
+        public static (double x, double y) pos
+        {
+            get
+            {
+                _Init();
+                return _api.pos;
+            }
+            set
+            {
+                _Init();
+                _api.pos = value;
+            }
+        }
     }
 }
 

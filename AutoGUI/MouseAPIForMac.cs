@@ -82,10 +82,11 @@ internal class MouseAPIForMac: MouseAPI
         get => GetMousePosition();
         set
         {
-            IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, CGEventType.MouseMoved, new CGPoint(0, 0), MouseButton.Left);
+            
+            IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, CGEventType.MouseMoved, new CGPoint(value.x, value.y), MouseButton.Left);
             CGEventPost(0, eventRef);
             CFRelease(eventRef);
-            //value = GetMousePosition();
+            
         }
     }
 

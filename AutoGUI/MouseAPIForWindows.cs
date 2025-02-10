@@ -9,8 +9,19 @@ internal class MouseAPIForWindows: MouseAPI
     private static extern void mouse_event(uint dwFlags, int dx, int dy, uint dwData, int dwExtraInfo);
 
     [DllImport("user32.dll")]
-    private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
-
+    public static extern bool GetCursorPos(out Point lpPoint);
+    
+    // 定义Point结构体，用于存储鼠标位置
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Point
+    {
+        public int X;
+        public int Y;
+        public override string ToString()
+        {
+            return $"X = {X}, Y = {Y}";
+        }
+    }
     // 鼠标事件常量
     private const uint MOUSEEVENTF_MOVE = 0x0001;
     private const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
@@ -24,6 +35,20 @@ internal class MouseAPIForWindows: MouseAPI
     {
 
         mouse_event(MOUSEEVENTF_MOVE, x, y, 0, 0);
+    }
+
+    public override (double x, double y) pos
+    {
+        get
+        {
+            GetCursorPos(out var p);
+            return (p.X, p.Y);
+        }
+        set
+        {
+            MouseMove(-10000, -10000);
+            MouseMove((int)value.x,(int)value.y);
+        }
     }
 
     public override void MouseDown(MouseButton mouseButton)
@@ -69,9 +94,6 @@ internal class MouseAPIForWindows: MouseAPI
     {
         mouse_event(MOUSEEVENTF_WHEEL, 0, 0, (uint)delta, 0);
     }
-    public MouseAPIForWindows()
-    {
-        MouseMove(-10000, -10000);
-    }
+    
     
 }

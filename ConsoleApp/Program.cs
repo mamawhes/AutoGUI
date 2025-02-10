@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        
-        MouseController.MouseMove(100,100);
+        MouseController.pos=(100.0,100.0);
+       // MouseController.MouseMove(100,100);
         // MouseController.MouseWheel(300);
         //MouseController.MouseClick(MouseButton.Left);
         System.Threading.Thread.Sleep(1000);
