@@ -8,7 +8,7 @@ internal class KeyboardAPIForWindows:KeyboardAPI
     [DllImport("user32.dll")]
     private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
 
-    // ¼üÅÌÊÂ¼ş³£Á¿
+    // é”®ç›˜äº‹ä»¶å¸¸é‡
     private const uint KEYEVENTF_KEYDOWN = 0x0000;
     private const uint KEYEVENTF_KEYUP = 0x0002;
 
@@ -23,7 +23,7 @@ internal class KeyboardAPIForWindows:KeyboardAPI
     }
     Dictionary<KeyCode, int> keyCodeMapping = new Dictionary<KeyCode, int>
         {
-            // ×ÖÄ¸¼ü
+            // å­—æ¯é”®
             { KeyCode.A, 0x41 },
             { KeyCode.B, 0x42 },
             { KeyCode.C, 0x43 },
@@ -50,7 +50,7 @@ internal class KeyboardAPIForWindows:KeyboardAPI
             { KeyCode.X, 0x58 },
             { KeyCode.Y, 0x59 },
             { KeyCode.Z, 0x5A },
-            // Êı×Ö¼ü
+            // æ•°å­—é”®
             { KeyCode.D0, 0x30 },
             { KeyCode.D1, 0x31 },
             { KeyCode.D2, 0x32 },
@@ -61,7 +61,7 @@ internal class KeyboardAPIForWindows:KeyboardAPI
             { KeyCode.D7, 0x37 },
             { KeyCode.D8, 0x38 },
             { KeyCode.D9, 0x39 },
-            // ¹¦ÄÜ¼ü
+            // åŠŸèƒ½é”®
             { KeyCode.F1, 0x70 },
             { KeyCode.F2, 0x71 },
             { KeyCode.F3, 0x72 },
@@ -74,7 +74,7 @@ internal class KeyboardAPIForWindows:KeyboardAPI
             { KeyCode.F10, 0x79 },
             { KeyCode.F11, 0x7A },
             { KeyCode.F12, 0x7B },
-            // ¿ØÖÆ¼ü
+            // æ§åˆ¶é”®
             { KeyCode.Escape, 0x1B },
             { KeyCode.Tab, 0x09 },
             { KeyCode.CapsLock, 0x14 },
@@ -90,12 +90,12 @@ internal class KeyboardAPIForWindows:KeyboardAPI
             { KeyCode.End, 0x23 },
             { KeyCode.PageUp, 0x21 },
             { KeyCode.PageDown, 0x22 },
-            // ·½Ïò¼ü
+            // æ–¹å‘é”®
             { KeyCode.UpArrow, 0x26 },
             { KeyCode.DownArrow, 0x28 },
             { KeyCode.LeftArrow, 0x25 },
             { KeyCode.RightArrow, 0x27 },
-            // ÆäËû¼ü
+            // å…¶ä»–é”®
             { KeyCode.PrintScreen, 0x2C },
             { KeyCode.ScrollLock, 0x91 },
             { KeyCode.Pause, 0x13 },

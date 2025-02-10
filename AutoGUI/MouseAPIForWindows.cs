@@ -4,14 +4,14 @@ using System.Runtime.InteropServices;
 namespace AutoGUI;
 internal class MouseAPIForWindows: MouseAPI
 {
-    // 导入 user32.dll 中的函数
+    // 瀵煎叆 user32.dll 涓殑鍑芥暟
     [DllImport("user32.dll")]
     private static extern void mouse_event(uint dwFlags, int dx, int dy, uint dwData, int dwExtraInfo);
 
     [DllImport("user32.dll")]
     private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
 
-    // 鼠标事件常量
+    // 榧犳爣浜嬩欢甯搁噺
     private const uint MOUSEEVENTF_MOVE = 0x0001;
     private const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
     private const uint MOUSEEVENTF_LEFTUP = 0x0004;
@@ -19,7 +19,7 @@ internal class MouseAPIForWindows: MouseAPI
     private const uint MOUSEEVENTF_RIGHTUP = 0x0010;
     private const uint MOUSEEVENTF_MIDDLEDOWN = 0x0020;
     private const uint MOUSEEVENTF_MIDDLEUP = 0x0040;
-    private const uint MOUSEEVENTF_WHEEL = 0x0800; // 鼠标滚轮事件
+    private const uint MOUSEEVENTF_WHEEL = 0x0800; // 榧犳爣婊氳疆浜嬩欢
     public override void MouseMove(int x, int y)
     {
 
