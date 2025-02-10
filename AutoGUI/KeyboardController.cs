@@ -13,7 +13,7 @@ public static class KeyboardController
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                _api = new KeyboardAPI();
+                _api = new KeyboardAPIForWindows();
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
