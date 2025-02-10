@@ -15,13 +15,14 @@ internal class KeyboardAPIForWindows:KeyboardAPI
 
     public override void KeyUp(KeyCode keyCode)
     {
-        keybd_event((byte)keyCodeMapping[keyCode], 0, KEYEVENTF_KEYUP, 0);
+        keybd_event((byte)_keyCodeMapping[keyCode], 0, KEYEVENTF_KEYUP, 0);
     }
     public override void KeyDown(KeyCode keyCode)
     {
-        keybd_event((byte)keyCodeMapping[keyCode], 0, KEYEVENTF_KEYDOWN, 0);
+        keybd_event((byte)_keyCodeMapping[keyCode], 0, KEYEVENTF_KEYDOWN, 0);
     }
-    Dictionary<KeyCode, int> keyCodeMapping = new Dictionary<KeyCode, int>
+
+    private readonly Dictionary<KeyCode, int> _keyCodeMapping = new Dictionary<KeyCode, int>
         {
             // 字母键
             { KeyCode.A, 0x41 },

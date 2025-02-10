@@ -20,7 +20,7 @@ internal class MouseAPIForWindows: MouseAPI
     private const uint MOUSEEVENTF_MIDDLEDOWN = 0x0020;
     private const uint MOUSEEVENTF_MIDDLEUP = 0x0040;
     private const uint MOUSEEVENTF_WHEEL = 0x0800; // 鼠标滚轮事件
-    public override void MouseMove(int x, int y)
+    public sealed override void MouseMove(int x, int y)
     {
 
         mouse_event(MOUSEEVENTF_MOVE, x, y, 0, 0);
