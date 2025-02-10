@@ -28,6 +28,8 @@ internal class MouseAPIForMac: MouseAPI
     }
     // 导入 Core Graphics 函数
     [DllImport(CoreGraphicsLibrary)]
+    private static extern IntPtr CGEventCreate(IntPtr source);
+    [DllImport(CoreGraphicsLibrary)]
     private static extern IntPtr CGEventCreateMouseEvent(IntPtr source, CGEventType mouseType, CGPoint position, MouseButton button);
     [DllImport(CoreGraphicsLibrary)]
     private static extern IntPtr CGEventCreateScrollWheelEvent(IntPtr source, CGScrollEventUnit units, uint wheelCount, int wheel1, int wheel2);
@@ -40,6 +42,10 @@ internal class MouseAPIForMac: MouseAPI
     [DllImport(CoreGraphicsLibrary)]
     private static extern void CGEventSetIntegerValueField(IntPtr evt, int field, long value);
 
+    // 导入获取鼠标位置的函数
+    [DllImport(CoreGraphicsLibrary)]
+    private static extern CGPoint CGEventGetLocation(IntPtr eventRef);
+    
     // 定义 CGPoint 结构
     [StructLayout(LayoutKind.Sequential)]
     private struct CGPoint
@@ -53,11 +59,48 @@ internal class MouseAPIForMac: MouseAPI
             Y = y;
         }
     }
-    private static CGPoint _pos=new CGPoint(0,0);
+    public static (double X, double Y) GetMousePosition()
+    {
+        // 创建一个空事件
+        IntPtr eventRef = CGEventCreate(IntPtr.Zero);
+        if (eventRef == IntPtr.Zero)
+        {
+            throw new InvalidOperationException("Failed to create CGEvent.");
+        }
+
+        // 获取鼠标位置
+        CGPoint point = CGEventGetLocation(eventRef);
+
+        // 释放事件
+        CFRelease(eventRef);
+
+        return (point.X, point.Y);
+    }
+
+    public override (double x, double y) pos
+    {
+        get => GetMousePosition();
+        set
+        {
+            IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, CGEventType.MouseMoved, new CGPoint(0, 0), MouseButton.Left);
+            CGEventPost(0, eventRef);
+            CFRelease(eventRef);
+            //value = GetMousePosition();
+        }
+    }
+
+    private static CGPoint _pos
+    {
+        get
+        {
+            var xy= GetMousePosition();
+            return new CGPoint(xy.X, xy.Y);
+        }
+    }
     public override void MouseMove(int x, int y)
     {
-        _pos = new CGPoint(x, y);
-        IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, CGEventType.MouseMoved, _pos, MouseButton.Left);
+        var new_pos = new CGPoint(_pos.X + x, _pos.Y + y);
+        IntPtr eventRef = CGEventCreateMouseEvent(IntPtr.Zero, CGEventType.MouseMoved, new_pos, MouseButton.Left);
         CGEventPost(0, eventRef);
         CFRelease(eventRef);
     }

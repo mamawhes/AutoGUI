@@ -41,6 +41,12 @@
                 System.Threading.Thread.Sleep(100);
                 MouseClick(mouseButton);
             }
+
+            public virtual (double x, double y) pos
+            {
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
+            }
         }
     }
     

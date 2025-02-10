@@ -5,11 +5,11 @@ class Program
     static void Main(string[] args)
     {
         
-        MouseController.MouseMove(1000,550);
+        MouseController.MouseMove(100,100);
         // MouseController.MouseWheel(300);
-        MouseController.MouseClick(MouseButton.Left);
+        //MouseController.MouseClick(MouseButton.Left);
         System.Threading.Thread.Sleep(1000);
-        TouchpadController.Zoom(1);
+        //TouchpadController.Zoom(1);
         // KeyboardController.KeyClick(KeyCode.A);
         // KeyboardController.KeyClick(KeyCode.P);
         // KeyboardController.KeyClick(KeyCode.P);
