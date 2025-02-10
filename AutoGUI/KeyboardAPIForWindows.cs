@@ -1,6 +1,15 @@
+using AutoGUI.API;
+
 namespace AutoGUI;
 
-public class KeyboardAPIForWindows
+internal class KeyboardAPIForWindows:KeyboardAPI
 {
-    
+    public override void KeyUp(KeyCode keyCode)
+    {
+        base.KeyUp(keyCode);
+    }
+    public override void KeyDown(KeyCode keyCode)
+    {
+        base.KeyDown(keyCode);
+    }
 }

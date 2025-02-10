@@ -14,7 +14,7 @@ namespace AutoGUI
                 Console.WriteLine("KeyUp: " + keyCode);
             }
 
-            public virtual void KeyClick(KeyCode keyCode)
+            public void KeyClick(KeyCode keyCode)
             {
                 this.KeyDown(keyCode);
                 System.Threading.Thread.Sleep(100);
